@@ -9,9 +9,23 @@ using namespace std;
 // run    ls -l | wc
 int main(int argc, char *argv[])
 {
+  /*
+  cout << fileno(stdin) << endl;
+  cout << fileno(stdout) << endl;
+  */
+  
   int pipeInfo[2];
-  int myPipe = pipe(pipeInfo);
+  int status = pipe(pipeInfo);
+
+  if (status == -1)
+    {
+      cerr << "Pipe failed to create!" << endl;
+      exit(1);
+    }
+  
   int pid = fork();
+ 
+
   if (pid!=0) // this is the parent, run "wc"
     {
       // attach parent input to reader end of pipe. 

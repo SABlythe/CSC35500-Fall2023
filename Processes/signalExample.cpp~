@@ -1,0 +1,22 @@
+#include <iostream>
+
+using namesapce std;
+
+void myHandler(int sigNum)
+{
+  cout << "I am running!" << endl;
+  cout << "received: " << sigNum << endl;
+}
+
+int main(int argc, char *argv[])
+{
+  signal (SIGCHLD, myHandler);
+
+
+  sleep(100);
+
+  cout << "parent done!" << endl;
+  return 0;
+}
+
+
